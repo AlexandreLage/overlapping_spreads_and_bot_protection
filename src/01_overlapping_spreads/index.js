@@ -9,7 +9,7 @@
 // * the result will be 5.
 
 exports.overlappingSpreads = function (data) {
-    //TODO implement me
+    //Gather neighbouring numbers
     const neighbouringNumbers = [];
     for (let index = 0; index < data.length; index++) {
         let element = data[index];
