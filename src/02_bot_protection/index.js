@@ -25,6 +25,9 @@ exports.botProtection = function (data) {
         }
     }
 
+    //Hi Adnan, here I took a little bit more time because I thought of using regex first.
+    //But then I realized it would be simpler if I used this simples logic. I hope it is good enough four you/
+
     return checkForDuplicated(sequencesArray);
 }
 
