@@ -9,28 +9,14 @@
 // * the result will be 5.
 
 exports.overlappingSpreads = function (data) {
-    //Gather neighbouring numbers
-    const neighbouringNumbers = [];
-    for (let index = 0; index < data.length; index++) {
-        let element = data[index];
-        neighbouringNumbers.push(element--, element++);
+    let memory = {}
+    if (Array.isArray(data)) {
+        return data.reduce((sum, value) => {
+            const neighbours = [value - 1, value + 1]
+            memory[neighbours[0]] ? sum += neighbours[0] : memory[neighbours[0]] = true;
+            memory[neighbours[1]] ? sum += neighbours[1] : memory[neighbours[1]] = true;
+            return sum
+        }, 0)
     }
-
-    //Find duplicated numbers
-    const duplicatedNumbers = findDuplicates(neighbouringNumbers);
-
-    //Sum duplicated numbers
-    return duplicatedNumbers.reduce((a, b) => a + b, 0)
 }
 
-function findDuplicates(inputArray) {
-    //Sort array
-    let sortedArray = inputArray.slice().sort();
-    let duplicatedElements = [];
-    for (let i = 0; i < sortedArray.length - 1; i++) {
-        if (sortedArray[i + 1] == sortedArray[i]) {
-            duplicatedElements.push(sortedArray[i]);
-        }
-    }
-    return duplicatedElements;
-}
